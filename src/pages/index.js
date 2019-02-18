@@ -1,21 +1,55 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React,{Component} from 'react'
+import styled from 'styled-components'
+import SelectButtons from '../components/selectButtons'
+import PrevNextButtons from '../components/prevNextButtons'
+import ListForm from '../components/listForm'
+import SubmitButton from '../components/submitButton'
+import layout from '../components/layout.css'
 
-import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-    <h1>Hi people</h1>
-    <p>Hello!!!!!.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const Wrapper = styled.div`
+text-align : center;
+`
+const HeaderText = styled.h1`
+margin: 0;
+padding-bottom: 50px;
+color: white;
+padding-top: 50px;
+font-size:
+`
 
-export default IndexPage
+
+class IndexHeader extends Component {
+  constructor(props) {
+    super(props);
+ this.state = {
+   name: "",
+   offset: 0,
+   limit: 5,
+ };
+  this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(){
+this.setState({
+  name: "Ohh i see you clicked the button"
+});
+    }
+
+render(){
+  return(
+    <Wrapper>
+    <HeaderText>
+    Instagram Profiles
+    </HeaderText>
+    <SelectButtons handleClick={this.handleClick}/>
+    <PrevNextButtons/>
+    <ListForm name={this.state.name}/>
+    <SubmitButton/>
+    </Wrapper>
+  )
+}
+}
+
+
+export default IndexHeader
